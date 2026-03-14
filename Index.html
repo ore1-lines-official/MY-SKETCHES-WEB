@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ore1.lines | Official Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-pink: #ff7eb9;
+            --accent-blue: #7afcff;
+            --deep-space: #0a0a12;
+            --glass: rgba(255, 255, 255, 0.03);
+            --gilded: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--deep-space);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(255, 126, 185, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(122, 252, 255, 0.08) 0%, transparent 40%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2.5rem, 12vw, 7rem);
+            margin: 0;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--accent-pink), #fff, var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(255, 126, 185, 0.4));
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.7rem;
+            color: var(--accent-blue);
+            opacity: 0.6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .gallery {
+            column-count: auto;
+            column-width: 350px;
+            column-gap: 45px;
+            padding: 50px 8%;
+            max-width: 1600px;
+            margin: auto;
+        }
+
+        .art-frame {
+            break-inside: avoid;
+            margin-bottom: 45px;
+            display: inline-block;
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid;
+            border-image: var(--gilded) 1;
+            box-shadow: 0 0 25px rgba(255, 126, 185, 0.15);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .art-frame.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .art-frame:hover {
+            border-image: linear-gradient(45deg, var(--accent-pink), var(--accent-blue)) 1;
+            box-shadow: 0 0 40px var(--accent-pink);
+            transform: scale(1.02);
+        }
+
+        .art-frame img {
+            width: 100%;
+            display: block;
+        }
+
+        .cta-section {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .follow-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: transparent;
+            color: var(--accent-pink);
+            border: 2px solid var(--accent-pink);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .follow-btn:hover {
+            background: var(--accent-pink);
+            color: var(--deep-space);
+            box-shadow: 0 0 30px var(--accent-pink);
+        }
+
+        #lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 10, 0.98);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+        }
+
+        #lightbox img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+            animation: smoothOpen 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+        }
+
+        @keyframes smoothOpen {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <header>
+        <h1>@ore.lines</h1>
+        <p style="color: var(--accent-blue); letter-spacing: 8px; font-weight: 300;">VISHNU | ANIME ARTIST • ILLUSTRATOR</p>
+        <div class="scroll-hint">Scroll down to view MY SKETCHES</div>
+    </header>
+
+    <div class="gallery" id="gallery">
+        <div class="art-frame"><img src="Kanao.jpg" alt="Kanao"></div>
+        <div class="art-frame"><img src="Hana1.jpg" alt="Hana1"> </div>
+        <div class="art-frame"><img src="Hana.jpg" alt="Hana"></div>
+        <div class="art-frame"><img src="Gojo.jpg" alt="Gojo"></div>
+        <div class="art-frame"><img src="Chizuru.jpg" alt="chizuru"> </div>
+        <div class="art-frame"><img src="Chivsruka.jpg" alt="Chizuru Vs Ruka"> </div>
+        <div class="art-frame"><img src="Fanart.jpg" alt="Fanart" > </div>
+        <div class="art-frame"><img src="Hina.jpg" alt="Hina Chono"> </div>
+        <div class="art-frame"><img src="jinwoo.jpg" alt="Sung Jinwoo"> </div>
+        <div class="art-frame"><img src="Ruka1.jpg" alt="Ruka"> </div>
+        <div class="art-frame"><img src="Chinatsu.jpg" alt="Chinatsu Senpai"> </div>
+        <div class="art-frame"><img src="Sukuna.jpg" alt="Ryomen Sukuna"> </div>
+        <div class="art-frame"><img src="Rainy.jpg" alt="Girl from Rainy Manga"> </div>
+        </div>
+
+    <section class="cta-section">
+        <a href="https://www.instagram.com/ore1.lines/" 
+           onclick="window.location.href='instagram://user?username=ore1.lines'; return false;" 
+           class="follow-btn">
+           Follow on Instagram
+        </a>
+    </section>
+
+    <div id="lightbox" onclick="this.style.display='none'">
+        <img id="full-img" src="">
+    </div>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.art-frame').forEach(frame => {
+            observer.observe(frame);
+            frame.onclick = function() {
+                const src = this.querySelector('img').src;
+                document.getElementById('full-img').src = src;
+                document.getElementById('lightbox').style.display = 'flex';
+            }
+        });
+    </script>
+</body>
+</html>
