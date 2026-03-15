@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ore1.lines | Official-Art-Web</title>
+    <title>Ore1.lines | Official.Art.Web</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Outfit:wght@300;400;600&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
 
     <style>
@@ -51,7 +52,7 @@
 
         /* header */
         header {
-            height: 90vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -80,29 +81,42 @@
             margin-top: 10px;
         }
 
-        /* gallery */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 40px;
-            padding: 80px 6%;
+        /* Fixed Masonry Gallery Arrangement */
+        .gallery-wrapper {
+            padding: 40px 6%;
             max-width: 1500px;
             margin: auto;
         }
 
-        /* Frame Fix: Tight wrap around images */
+        .gallery {
+            /* This creates the Pinterest-style columns */
+            column-count: 3; 
+            column-gap: 30px;
+        }
+
+        /* Adjust columns for mobile/tablet */
+        @media (max-width: 1000px) {
+            .gallery { column-count: 2; }
+        }
+        @media (max-width: 600px) {
+            .gallery { column-count: 1; }
+        }
+
         .art-frame {
+            break-inside: avoid; /* Prevents images from splitting between columns */
+            margin-bottom: 30px; /* This creates the even vertical gap */
             position: relative;
             padding: 12px;
             background: linear-gradient(135deg, var(--pink), var(--blue), var(--purple));
             border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8), 0 0 20px rgba(122,252,255,0.2);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
             transition: all .45s cubic-bezier(.17,.67,.25,1.25);
             cursor: pointer;
             overflow: hidden;
             opacity: 0;
             transform: translateY(40px);
-            height: fit-content; 
+            display: inline-block; /* Essential for masonry */
+            width: 100%;
         }
 
         .art-frame.show {
@@ -129,12 +143,8 @@
         }
 
         .art-frame:hover {
-            transform: translateY(-12px) scale(1.04);
-            box-shadow: 0 25px 80px rgba(0,0,0,0.9), 0 0 40px rgba(122,252,255,0.6);
-        }
-
-        .art-frame:hover img {
-            transform: scale(1.05);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(122,252,255,0.3);
         }
 
         /* lightbox */
@@ -164,10 +174,9 @@
         /* footer */
         .footer {
             text-align: center;
-            padding: 120px 0;
+            padding: 100px 0;
         }
 
-        /* follow button */
         .follow-btn {
             font-family: 'Syncopate';
             padding: 18px 60px;
@@ -192,22 +201,7 @@
 
         .follow-btn:hover {
             transform: scale(1.12);
-            box-shadow: 0 0 20px var(--pink), 0 0 40px var(--blue), 0 0 70px var(--purple);
-        }
-
-        .follow-btn::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
-            transition: 0.6s;
-        }
-
-        .follow-btn:hover::after {
-            left: 120%;
+            box-shadow: 0 0 20px var(--pink), 0 0 40px var(--blue);
         }
     </style>
 </head>
@@ -219,26 +213,26 @@
         <p>ANIME ART & SKETCHES</p>
     </header>
 
-    <section class="gallery">
-        <div class="art-frame"><img src="Kanao.jpg"></div>
-        <div class="art-frame"><img src="Hana1.jpg"></div>
-        <div class="art-frame"><img src="Hana.jpg"></div>
-        <div class="art-frame"><img src="Gojo.jpg"></div>
-        <div class="art-frame"><img src="Chizuru.jpg"></div>
-        <div class="art-frame"><img src="Chivsruka.jpg"></div>
-        <div class="art-frame"><img src="Fanart.jpg"></div>
-        <div class="art-frame"><img src="Hina.jpg"></div>
-        <div class="art-frame"><img src="jinwoo.jpg"></div>
-        <div class="art-frame"><img src="Ruka1.jpg"></div>
-        <div class="art-frame"><img src="Chinatsu.jpg"></div>
-        <div class="art-frame"><img src="Sukuna.jpg"></div>
-        <div class="art-frame"><img src="Rainy.jpg"></div>
-    </section>
+    <div class="gallery-wrapper">
+        <section class="gallery">
+            <div class="art-frame"><img src="Kanao.jpg"></div>
+            <div class="art-frame"><img src="Hana1.jpg"></div>
+            <div class="art-frame"><img src="Hana.jpg"></div>
+            <div class="art-frame"><img src="Gojo.jpg"></div>
+            <div class="art-frame"><img src="Chizuru.jpg"></div>
+            <div class="art-frame"><img src="Chivsruka.jpg"></div>
+            <div class="art-frame"><img src="Fanart.jpg"></div>
+            <div class="art-frame"><img src="Hina.jpg"></div>
+            <div class="art-frame"><img src="jinwoo.jpg"></div>
+            <div class="art-frame"><img src="Ruka1.jpg"></div>
+            <div class="art-frame"><img src="Chinatsu.jpg"></div>
+            <div class="art-frame"><img src="Sukuna.jpg"></div>
+            <div class="art-frame"><img src="Rainy.jpg"></div>
+        </section>
+    </div>
 
     <div class="footer">
-        <a href="https://www.instagram.com/ore1.lines/" 
-           class="follow-btn" 
-           id="instagram-link">
+        <a href="https://www.instagram.com/ore1.lines/" class="follow-btn" id="instagram-link">
             FOLLOW @ORE1.LINES
         </a>
     </div>
@@ -248,7 +242,7 @@
     </div>
 
     <script>
-        // Gallery Animation & Lightbox
+        // Gallery Animation
         const frames = document.querySelectorAll(".art-frame");
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -256,7 +250,7 @@
                     entry.target.classList.add("show");
                 }
             });
-        }, { threshold: 0.2 });
+        }, { threshold: 0.1 });
 
         frames.forEach(frame => {
             observer.observe(frame);
@@ -270,14 +264,11 @@
             document.getElementById("lightbox").style.display = "none";
         }
 
-        // Instagram App Deep Link logic
+        // Instagram App Deep Link
         const igLink = document.getElementById('instagram-link');
         igLink.onclick = function(e) {
             e.preventDefault();
-            // Try opening the Instagram App directly
             window.location.href = "instagram://user?username=ore1.lines";
-            
-            // If the app doesn't open in 500ms, open the web link instead
             setTimeout(() => {
                 window.open("https://www.instagram.com/ore1.lines/", "_blank");
             }, 500);
